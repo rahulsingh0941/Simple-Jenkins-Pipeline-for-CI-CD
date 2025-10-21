@@ -60,3 +60,5 @@ docker run -d -p 8088:80 my-html-app
 \`\`\`
 http://<EC2_PUBLIC_IP>:8088
 \`\`\`
+
+👤 Author Rahul Singh DevOps Engineer | AWS | Docker | Kubernetes | CI/CD Pipelines
