@@ -1,0 +1,39 @@
+pipeline {
+  agent any
+
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred')
+    DOCKER_IMAGE = "rahul0941/elevate-lab-task2"
+  }
+
+  stages {
+    stage('Clone Repo') {
+      steps {
+        git branch: 'main', url: 'https://github.com/rahulsingh0941/Simple-Jenkins-Pipeline-for-CI-CD.git'
+      }
+    }
+
+    stage('Docker Login') {
+      steps {
+        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+      }
+    }
+
+    stage('Docker Build') {
+      steps {
+        sh 'docker build -t $DOCKER_IMAGE .'
+      }
+    }
+
+    stage('Docker Push') {
+      steps {
+        sh 'docker push $DOCKER_IMAGE'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh "docker run -d -p 8088:80 $DOCKER_IMAGE"
+      }
+    }
+  }
+}
