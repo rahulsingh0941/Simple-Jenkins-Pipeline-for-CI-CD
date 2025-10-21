@@ -17,7 +17,6 @@ Automated **CI/CD workflow** using Jenkins, Docker, and GitHub for deploying a s
 \`\`\`
 Simple-Jenkins-Pipeline-for-CI-CD/
 ├── index.html
-├── about.html
 ├── Dockerfile
 └── jenkins/Jenkinsfile
 \`\`\`
